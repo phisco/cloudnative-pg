@@ -103,7 +103,6 @@
       "datasourceTemplate": "golang-version",
       "depNameTemplate": "golang",
       "versioningTemplate": "loose",
-      "autoReplaceStringTemplate": "GOLANG_VERSION: \"{{ newMajor }}.{{ newMinor }}.x\"",
     }, {
 // We want a PR to bump golangci-lint versions used through env variables in
 // any GitHub Actions or Makefile, taking it from the official GitHub
@@ -115,11 +114,24 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "golangci/golangci-lint",
       "versioningTemplate": "loose",
-      "autoReplaceStringTemplate": "GOLANGCI_LINT_VERSION: \"v{{ newMajor }}.{{ newMinor }}\"",
     }
   ],
   "packageRules": [
     {
+      "matchUpdateTypes": [
+        "patch",
+        "digest"
+      ],
+      "matchDatasources" : [
+        "golang-version",
+        "github-releases",
+      ],
+      "enabled": false,
+      "matchDepNames" : [
+        "golangci/golangci-lint",
+        "golang-version",
+      ],
+    }, {
 // We need to ignore k8s.io/client-go older versions as they switched to
 // semantic version and old tags are still available in the repo.
       "matchDatasources": [
