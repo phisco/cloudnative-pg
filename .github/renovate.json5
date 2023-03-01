@@ -103,7 +103,7 @@
       "datasourceTemplate": "golang-version",
       "depNameTemplate": "golang",
       "versioningTemplate": "loose",
-      "autoReplaceStringTemplate": "GOLANG_VERSION: \"{{ newMajor }}.{{ newMinor }}.x\"",
+      "extractVersionTemplate": "^(?<version>\\d+\\.\\d+)"
     }, {
 // We want a PR to bump golangci-lint versions used through env variables in
 // any GitHub Actions or Makefile, taking it from the official GitHub
@@ -115,7 +115,7 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "golangci/golangci-lint",
       "versioningTemplate": "loose",
-      "autoReplaceStringTemplate": "GOLANGCI_LINT_VERSION: \"v{{ newMajor }}.{{ newMinor }}\"",
+      "extractVersionTemplate": "^v(?<version>\\d+\\.\\d+)"
     }
   ],
   "packageRules": [
